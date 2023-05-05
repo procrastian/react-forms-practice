@@ -3,25 +3,19 @@ import "./App.css";
 
 export default function App() {
   
-  const [name, setName] = useState('')
+  const [name, setName] = useState('name')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [complaint, setComplaint] = useState('')
   const [contactPreference, setContactPreference] = useState('email')
-  const [agree, setAgree] = useState('false')
+  const [agree, setAgree] = useState(false)
 
 
   //TODO: Add your state fields here
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({name})
-    console.log({address})
-    console.log({phone})
-    console.log({email})
-    console.log({complaint})
-    console.log({contactPreference})
-    console.log({agree})
+    console.log({name, address, phone, email, complaint, contactPreference, agree})
   }
 
   const handleChangeName = (e) => {
@@ -55,14 +49,14 @@ export default function App() {
   }
 
   const handleChangeAgree = (e) => {
-    setAgree(true)
+    setAgree(e.target.checked)
   }
 
 
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        <h2>Complaining form!</h2>
+        <h2> {name}'s Complaining form!</h2>
         <div className="form__section-left">
           <label>
             Full name
@@ -121,7 +115,7 @@ export default function App() {
 
           <label>
             I agree you take my data, and do whatever
-            <input type="checkbox" name="consent" id="consent" required onChange={handleChangeAgree} value={agree} />
+            <input type="checkbox" name="consent" id="consent" onChange={handleChangeAgree} value={agree} checked={agree}/>
           </label>
         </div>
         <input type="submit" value="Submit!" />
